@@ -19,7 +19,8 @@ To build a graph start with ops that do not need any input (source ops), such as
 
 ```python
 import tensorflow as tf
-matrix1 = tf.constant([[3., 3.]])
-matrix2 = tf.constant([[2.],[2.]])
-product = tf.matmul(matrix1, matrix2)
+matrix1 = tf.constant([[3., 3.]])     #Does not need any input
+matrix2 = tf.constant([[2.],[2.]])    #Does not need any input
+product = tf.matmul(matrix1, matrix2) #Takes above two tensors as input and computes the multiplication
 ```
+
