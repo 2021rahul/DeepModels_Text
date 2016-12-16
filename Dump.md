@@ -17,9 +17,9 @@ TensorFlow programs are usually structured into a construction phase, that assem
 ###Building the graph
 To build a graph start with ops that do not need any input (source ops), such as Constant, and pass their output to other ops that do computation. The ops constructors in the Python library return objects that stand for the output of the constructed ops. You can pass these to other ops constructors to use as inputs. The TensorFlow Python library has a default graph to which ops constructors add nodes. The default graph is sufficient for many applications.
 
-'''python
+```python
 import tensorflow as tf
 matrix1 = tf.constant([[3., 3.]])
 matrix2 = tf.constant([[2.],[2.]])
 product = tf.matmul(matrix1, matrix2)
-'''
+```
