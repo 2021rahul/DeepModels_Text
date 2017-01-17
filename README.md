@@ -1,3 +1,4 @@
-# Tensorflow_DeepLearning
+# DeepModels_Text
 
-Understanding Tensorflow and using it to implement LSTM_RNN
+Using TensorFlow framework to build variousdeep models for text & sequences.
+
