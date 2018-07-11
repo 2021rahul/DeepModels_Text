@@ -49,9 +49,9 @@ if __name__ == "__main__":
                 gen_model.build()
         # TRAIN MODEL
         model_name = os.path.join(config.MODEL_DIR, "model" + str(model_config.batch_size) + "_" + str(model_config.max_max_epoch) + ".ckpt")
-        #train_model.train(train_data, model_name)
+        train_model.train(train_data, model_name)
         # TEST MODEL
-        #test_model.test(test_data, model_name)
+        test_model.test(test_data, model_name)
         # GENERATE MODEL
         num_sentences = 10
         gen_model.generate(train_data, model_name, num_sentences)
