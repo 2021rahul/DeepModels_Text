@@ -8,10 +8,11 @@ Created on Thu Feb  8 17:16:29 2018
 import os
 
 # DIRECTORY INFORMATION
-ROOT_DIR = os.path.abspath('../')
-DATA_DIR = os.path.join(ROOT_DIR, 'DATASET/')
-OUT_DIR = os.path.join(ROOT_DIR, 'RESULT/')
-MODEL_DIR = os.path.join(ROOT_DIR, 'MODEL/')
+ROOT_DIR = os.path.abspath('..')
+DATA_DIR = os.path.join(ROOT_DIR, 'DATASET')
+OUT_DIR = os.path.join(ROOT_DIR, 'RESULT')
+MODEL_DIR = os.path.join(ROOT_DIR, 'MODEL')
+SOURCE_DIR = os.path.join(ROOT_DIR, 'SOURCE')
 
 # DATA FILES
 TRAIN_FILENAME = "ptb.train.txt"
@@ -88,15 +89,15 @@ class TestConfig(object):
 
 class SmallGenConfig(object):
     """Small config. for generation"""
-    init_scale = 0.1
+    init_scale = 0.05
     learning_rate = 1.0
     max_grad_norm = 5
     num_layers = 2
     num_steps = 1
-    hidden_size = 200
-    max_epoch = 4
-    max_max_epoch = 13
-    keep_prob = 1.0
-    lr_decay = 0.5
+    hidden_size = 650
+    max_epoch = 6
+    max_max_epoch = 39
+    keep_prob = 0.5
+    lr_decay = 0.8
     batch_size = 1
     vocab_size = 10000

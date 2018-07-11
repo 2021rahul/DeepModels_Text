@@ -39,20 +39,35 @@ class PTB_DATA(DATA):
 
     def __init__(self):
         super(PTB_DATA, self).__init__()
-        self.data_index = 0
         self.data = None
         self.vocabulary = None
 
     def load_data(self, filename, batch_size):
-        word_to_id = self.build_vocab(config.TRAIN_FILENAME)
+        word_to_id = self.build_vocab(filename)
+        self.reverse_dictionary = dict(zip(word_to_id.values(), word_to_id.keys()))
         self.data = self.file_to_word_ids(filename, word_to_id)
         self.vocabulary = len(word_to_id)
         self.data_len = len(self.data)
         self.batch_len = self.data_len//batch_size
 
-    def generate_batch(self, batch_size, num_steps):
+    def generate_batch(self, batch_size, num_steps, batch):
         data = np.reshape(self.data[0: batch_size * self.batch_len], [batch_size, self.batch_len])
-        dataX = data[:, (self.data_index * num_steps) : ((self.data_index + 1) * num_steps)]
-        dataY = data[:, ((self.data_index * num_steps) + 1) : (((self.data_index + 1) * num_steps) + 1)]
-        self.data_index = (self.data_index + 1) % self.batch_len
+        dataX = data[:, (batch):(batch + num_steps)]
+        dataY = data[:, (batch + 1):(batch + 1 + num_steps)]
         return dataX, dataY
+
+
+def DataTests():
+    model_config = config.MediumConfig()
+    train_data = PTB_DATA()
+    train_data.load_data(config.TRAIN_FILENAME, model_config.batch_size)
+    total_batch = int((train_data.batch_len - 1)/model_config.num_steps)
+    shape = (model_config.batch_size, model_config.num_steps)
+    for epoch in range(2):
+        for batch in range(total_batch):
+            batch_X, batch_Y = train_data.generate_batch(model_config.batch_size, model_config.num_steps, batch)
+            print("batch:", batch)
+            assert batch_X.shape == shape
+            assert batch_Y.shape == shape
+
+#DataTests()
